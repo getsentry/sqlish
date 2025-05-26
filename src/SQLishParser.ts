@@ -1,0 +1,8 @@
+import type { Token } from './types';
+import grammar from './sqlish.pegjs';
+
+export class SQLishParser {
+  parse(sql: string) {
+    return grammar.parse(sql) as Token[];
+  }
+}
