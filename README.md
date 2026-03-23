@@ -1,60 +1,61 @@
-# sqlish
+# @sentry/sqlish
 
-A SQL-like parser and formatter for syntax highlighting and formatting, written in TypeScript.
+A SQL-ish parser and formatter for syntax highlighting and pretty-printing.
 
 ## Installation
 
 ```bash
-npm install sqlish
-# or
-pnpm add sqlish
-# or
-bun install sqlish
-# or
-yarn add sqlish
+pnpm add @sentry/sqlish
+```
+
+For React formatting support, also install React:
+
+```bash
+pnpm add react
 ```
 
 ## Usage
 
-### Basic Parsing
+### Parsing
 
 ```typescript
-import { SQLishParser } from 'sqlish';
+import {SQLishParser} from '@sentry/sqlish';
 
 const parser = new SQLishParser();
 const tokens = parser.parse('SELECT id, name FROM users WHERE id = 42');
-
-console.log(tokens);
-// Returns an array of Token objects with type and content information
 ```
 
-### Formatting
+### String Formatting
 
 ```typescript
-import { SQLishFormatter } from 'sqlish';
-import { string } from 'sqlish';
+import {SQLishFormatter} from '@sentry/sqlish';
 
 const formatter = new SQLishFormatter();
-const tokens = parser.parse('SELECT id, name FROM users WHERE id = 42');
-
-// Format as string
-const formatted = string(tokens);
-console.log(formatted);
-
-// Format as React components (for syntax highlighting)
-const reactElements = formatter.format(tokens);
+const formatted = formatter.toString('SELECT id, name FROM users WHERE id = 42');
 ```
 
-### React Integration
+You can also use the low-level `string` formatter directly:
 
 ```typescript
-import { SQLishParser, simpleMarkup } from 'sqlish';
+import {SQLishParser, string} from '@sentry/sqlish';
+
+const parser = new SQLishParser();
+const tokens = parser.parse('SELECT id, name FROM users WHERE id = 42');
+const formatted = string(tokens, {maxLineLength: 80});
+```
+
+### React Markup (optional)
+
+Requires `react` as a peer dependency.
+
+```tsx
+import {SQLishParser} from '@sentry/sqlish';
+import {simpleMarkup} from '@sentry/sqlish/react';
 
 const parser = new SQLishParser();
 const tokens = parser.parse('SELECT id, name FROM users WHERE id = 42');
 const highlighted = simpleMarkup(tokens);
 
-// Use highlighted in your React component
 return <div>{highlighted}</div>;
 ```
 
@@ -62,29 +63,30 @@ return <div>{highlighted}</div>;
 
 ### SQLishParser
 
-- `parse(sql: string): Token[]` - Parses SQL string into tokens
+- `parse(sql: string): Token[]` — Parses a SQL-ish string into tokens
 
 ### SQLishFormatter
 
-- `format(tokens: Token[]): React.ReactElement[]` - Formats tokens as React elements
+- `toString(sql: string, options?): string` — Parses and formats SQL as a pretty-printed string
 
 ### Utility Functions
 
-- `string(tokens: Token[]): string` - Formats tokens as a plain string
-- `simpleMarkup(tokens: Token[]): React.ReactElement[]` - Simple syntax highlighting
+- `string(tokens: Token[], options?): string` — Formats tokens as a plain string (low-level)
+- `simpleMarkup(tokens: Token[]): React.ReactElement[]` — Formats tokens as React elements with syntax highlighting (from `@sentry/sqlish/react`)
 
 ## Development
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Build the project
-npm run build
+pnpm run build
 
 # Run tests
-npm test
-
-# Clean build artifacts
-npm run clean
+pnpm test
 ```
+
+## License
+
+Apache-2.0
