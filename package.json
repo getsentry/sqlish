@@ -50,9 +50,13 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react": "^16.0.0",
     "@types/node": "^22.15.21",
     "@types/react": "^19.1.5",
+    "jsdom": "^26.0.0",
     "peggy": "^5.0.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "tsup": "^8.0.0",
     "typescript": "^5.8.3",
     "vitest": "^3.0.0"
