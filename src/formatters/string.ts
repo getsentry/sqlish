@@ -1,5 +1,5 @@
-import { StringAccumulator } from "./stringAccumulator";
-import type { Token } from "../types";
+import { StringAccumulator } from './stringAccumulator';
+import type { Token } from '../types';
 
 interface Options {
   maxLineLength?: number;

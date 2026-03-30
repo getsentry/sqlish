@@ -43,7 +43,7 @@ export class StringAccumulator {
   toString(maxLineLength: number = DEFAULT_MAX_LINE_LENGTH) {
     let output: Line[] = [];
 
-    this.lines.forEach(line => {
+    this.lines.forEach((line) => {
       if (line.textLength <= maxLineLength) {
         output.push(line);
         return;
@@ -66,7 +66,7 @@ export class StringAccumulator {
         tokenIndex += 1;
       }
 
-      output = [...output, ...splitLines.filter(splitLine => !splitLine.isEmpty)];
+      output = [...output, ...splitLines.filter((splitLine) => !splitLine.isEmpty)];
     });
 
     return output.join(NEWLINE).trim();

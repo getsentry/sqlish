@@ -1,8 +1,8 @@
-import {defineConfig} from 'tsup';
+import { defineConfig } from 'tsup';
 
 export default defineConfig([
   {
-    entry: {index: 'src/index.ts'},
+    entry: { index: 'src/index.ts' },
     format: ['esm'],
     dts: true,
     outDir: 'dist',
@@ -10,7 +10,7 @@ export default defineConfig([
     sourcemap: true,
   },
   {
-    entry: {react: 'src/react.tsx'},
+    entry: { react: 'src/react.tsx' },
     format: ['esm'],
     dts: true,
     outDir: 'dist',

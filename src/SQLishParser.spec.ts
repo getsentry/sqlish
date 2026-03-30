@@ -1,4 +1,4 @@
-import {SQLishParser} from './SQLishParser';
+import { SQLishParser } from './SQLishParser';
 
 describe('SQLishParser', () => {
   describe('SQLishParser()', () => {
@@ -35,7 +35,7 @@ describe('SQLishParser', () => {
       '+ %s as count', // Arithmetic I
       '- %s as count', // Arithmetic II
       "ILIKE '\\_')", // Backslash
-    ])('Parses %s', sql => {
+    ])('Parses %s', (sql) => {
       expect(() => {
         parser.parse(sql);
       }).not.toThrow();
@@ -100,11 +100,11 @@ describe('SQLishParser', () => {
           type: 'GenericToken',
           content: 'sentry_users',
         },
-        {type: 'Whitespace', content: ' '},
-        {type: 'Keyword', content: 'INNER'},
-        {type: 'Whitespace', content: ' '},
-        {type: 'Keyword', content: 'JOIN'},
-        {type: 'Whitespace', content: ' '},
+        { type: 'Whitespace', content: ' ' },
+        { type: 'Keyword', content: 'INNER' },
+        { type: 'Whitespace', content: ' ' },
+        { type: 'Keyword', content: 'JOIN' },
+        { type: 'Whitespace', content: ' ' },
         {
           type: 'GenericToken',
           content: 'sentry_messages',

@@ -2,8 +2,21 @@
   "name": "@sentry/sqlish",
   "version": "1.0.0",
   "description": "A SQL-ish parser and formatter for syntax highlighting",
+  "homepage": "https://github.com/getsentry/sqlish#readme",
+  "bugs": {
+    "url": "https://github.com/getsentry/sqlish/issues"
+  },
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getsentry/sqlish.git"
+  },
+  "files": [
+    "dist"
+  ],
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.js",
@@ -14,28 +27,31 @@
       "types": "./dist/react.d.ts"
     }
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "prebuild": "node scripts/compile-grammar.mjs",
-    "build": "tsup",
-    "test": "vitest run"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/getsentry/sqlish.git"
-  },
-  "bugs": {
-    "url": "https://github.com/getsentry/sqlish/issues"
-  },
-  "homepage": "https://github.com/getsentry/sqlish#readme",
   "publishConfig": {
     "access": "public"
   },
-  "packageManager": "pnpm@10.28.0",
+  "scripts": {
+    "prebuild": "node scripts/compile-grammar.mjs",
+    "build": "tsup",
+    "test": "vitest run",
+    "lint": "oxlint",
+    "format": "oxfmt --write",
+    "format:check": "oxfmt --check"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.0.0",
+    "@types/node": "^22.15.21",
+    "@types/react": "^19.1.5",
+    "jsdom": "^26.0.0",
+    "oxfmt": "^0.42.0",
+    "oxlint": "^1.57.0",
+    "peggy": "^5.0.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.0.0"
+  },
   "peerDependencies": {
     "react": ">=17"
   },
@@ -44,21 +60,10 @@
       "optional": true
     }
   },
+  "packageManager": "pnpm@10.28.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild"
     ]
-  },
-  "devDependencies": {
-    "@testing-library/react": "^16.0.0",
-    "@types/node": "^22.15.21",
-    "@types/react": "^19.1.5",
-    "jsdom": "^26.0.0",
-    "peggy": "^5.0.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tsup": "^8.0.0",
-    "typescript": "^5.8.3",
-    "vitest": "^3.0.0"
   }
 }

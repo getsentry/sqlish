@@ -1,4 +1,4 @@
-import type { Token } from "../types";
+import type { Token } from '../types';
 
 export function simpleMarkup(tokens: Token[]): React.ReactElement[] {
   const accumulator: React.ReactElement[] = [];
