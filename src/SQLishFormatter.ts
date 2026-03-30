@@ -1,6 +1,6 @@
-import type { Token } from "./types";
-import { string } from "./formatters/string";
-import { SQLishParser } from "./SQLishParser";
+import type { Token } from './types';
+import { string } from './formatters/string';
+import { SQLishParser } from './SQLishParser';
 
 type StringFormatterOptions = Parameters<typeof string>[1];
 
