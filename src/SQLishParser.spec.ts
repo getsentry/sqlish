@@ -35,6 +35,11 @@ describe('SQLishParser', () => {
       '+ %s as count', // Arithmetic I
       '- %s as count', // Arithmetic II
       "ILIKE '\\_')", // Backslash
+      'SELECT\x00 hello', // Null byte
+      'SELECT\x08 hello', // Backspace
+      'SELECT\x7F hello', // DEL
+      'SELECT\x80 hello', // C1 control
+      '\x01\x02\x03SELECT hello\x1F', // Multiple C0 controls
     ])('Parses %s', (sql) => {
       expect(() => {
         parser.parse(sql);
@@ -91,6 +96,30 @@ describe('SQLishParser', () => {
           type: 'CollapsedColumns',
           content: '..',
         },
+      ]);
+    });
+
+    it('Strips control characters from input', () => {
+      const clean = parser.parse('SELECT hello');
+
+      // C0 controls, DEL, and C1 controls are stripped
+      expect(parser.parse('SELECT\x00\x08\x7F\x80 hello')).toEqual(clean);
+
+      // Multiple control chars scattered throughout
+      expect(parser.parse('\x01SELECT\x1F \x7Fhello\x9F')).toEqual(clean);
+    });
+
+    it('Preserves tab and newline whitespace', () => {
+      expect(parser.parse('SELECT\thello')).toEqual([
+        { type: 'Keyword', content: 'SELECT' },
+        { type: 'Whitespace', content: '\t' },
+        { type: 'GenericToken', content: 'hello' },
+      ]);
+
+      expect(parser.parse('SELECT\nhello')).toEqual([
+        { type: 'Keyword', content: 'SELECT' },
+        { type: 'Whitespace', content: '\n' },
+        { type: 'GenericToken', content: 'hello' },
       ]);
     });
 
