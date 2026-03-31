@@ -1,4 +1,4 @@
-import {readFileSync, writeFileSync} from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import peggy from 'peggy';
 
 const grammar = readFileSync('src/sqlish.pegjs', 'utf8');

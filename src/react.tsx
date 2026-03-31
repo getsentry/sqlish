@@ -1,1 +1,1 @@
-export {simpleMarkup} from './formatters/simpleMarkup';
+export { simpleMarkup } from './formatters/simpleMarkup';

@@ -19,7 +19,7 @@ pnpm add react
 ### Parsing
 
 ```typescript
-import {SQLishParser} from '@sentry/sqlish';
+import { SQLishParser } from '@sentry/sqlish';
 
 const parser = new SQLishParser();
 const tokens = parser.parse('SELECT id, name FROM users WHERE id = 42');
@@ -28,7 +28,7 @@ const tokens = parser.parse('SELECT id, name FROM users WHERE id = 42');
 ### String Formatting
 
 ```typescript
-import {SQLishFormatter} from '@sentry/sqlish';
+import { SQLishFormatter } from '@sentry/sqlish';
 
 const formatter = new SQLishFormatter();
 const formatted = formatter.toString('SELECT id, name FROM users WHERE id = 42');
@@ -37,11 +37,11 @@ const formatted = formatter.toString('SELECT id, name FROM users WHERE id = 42')
 You can also use the low-level `string` formatter directly:
 
 ```typescript
-import {SQLishParser, string} from '@sentry/sqlish';
+import { SQLishParser, string } from '@sentry/sqlish';
 
 const parser = new SQLishParser();
 const tokens = parser.parse('SELECT id, name FROM users WHERE id = 42');
-const formatted = string(tokens, {maxLineLength: 80});
+const formatted = string(tokens, { maxLineLength: 80 });
 ```
 
 ### React Markup (optional)
@@ -49,8 +49,8 @@ const formatted = string(tokens, {maxLineLength: 80});
 Requires `react` as a peer dependency.
 
 ```tsx
-import {SQLishParser} from '@sentry/sqlish';
-import {simpleMarkup} from '@sentry/sqlish/react';
+import { SQLishParser } from '@sentry/sqlish';
+import { simpleMarkup } from '@sentry/sqlish/react';
 
 const parser = new SQLishParser();
 const tokens = parser.parse('SELECT id, name FROM users WHERE id = 42');
