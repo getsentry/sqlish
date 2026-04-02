@@ -1,6 +1,6 @@
 {
   "name": "@sentry/sqlish",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A SQL-ish parser and formatter for syntax highlighting",
   "homepage": "https://github.com/getsentry/sqlish#readme",
   "bugs": {
