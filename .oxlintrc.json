@@ -8,5 +8,5 @@
   "rules": {
     "react/react-in-jsx-scope": "off"
   },
-  "ignorePatterns": ["src/sqlish-grammar.js", ".claude", ".opencode"]
+  "ignorePatterns": ["src/sqlish-grammar.js", ".claude", ".opencode", "**/*.md"]
 }
